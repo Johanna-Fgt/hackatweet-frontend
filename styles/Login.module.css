@@ -27,7 +27,6 @@
     padding: 40px;
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
     flex: 1 0;
     gap: 20px;
     background-color: #141d29;
@@ -46,6 +45,7 @@
 .title {
  font-size: 4rem;
  line-height: 1.5;
+ width: 500px;
 }
 .lead {
     font-size: 1.8rem;

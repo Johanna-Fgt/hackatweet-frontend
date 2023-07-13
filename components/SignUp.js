@@ -47,7 +47,7 @@ const SignUp = () => {
 				X
 			</button>
 			<div className={styles.registerSection}>
-				<p>Create your Hackatweet account</p>
+				<h2>Create your Hackatweet account</h2>
 				<input
 					type="text"
 					placeholder="Firstname"
@@ -66,7 +66,9 @@ const SignUp = () => {
 					onChange={(e) => setSignUpPassword(e.target.value)}
 					value={signUpPassword}
 				/>
-				<button onClick={handleRegister}>Sign up</button>
+				<button className={styles.btn} onClick={handleRegister}>
+					Sign up
+				</button>
 			</div>
 		</div>
 	);

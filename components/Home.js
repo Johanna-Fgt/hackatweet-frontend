@@ -1,15 +1,16 @@
 import styles from '../styles/Home.module.css';
+import LastTweets from './LastTweets';
+import Trends from './Trends';
+import Tweet from './Tweet';
 
 function Home() {
-  return (
-    <div>
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-      </main>
-    </div>
-  );
+	return (
+		<main className={styles.main}>
+			<Tweet />
+			<LastTweets />
+			<Trends />
+		</main>
+	);
 }
 
 export default Home;

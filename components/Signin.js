@@ -45,7 +45,7 @@ const SignIn = () => {
 				X
 			</button>
 			<div className={styles.registerSection}>
-				<p>Connect to Hackatweet</p>
+				<h2>Connect to Hackatweet</h2>
 
 				<input
 					type="text"
@@ -59,7 +59,9 @@ const SignIn = () => {
 					onChange={(e) => setSignInPassword(e.target.value)}
 					value={signInPassword}
 				/>
-				<button onClick={handleConnection}>Sign in</button>
+				<button className={styles.btn} onClick={handleConnection}>
+					Sign in
+				</button>
 			</div>
 		</div>
 	);
