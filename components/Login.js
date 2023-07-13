@@ -5,16 +5,14 @@ import SignIn from './Signin';
 function Login() {
 	return (
 		<div className={styles.login}>
-			<div className={styles.picture}>
-				<span>ICONE</span>
-			</div>
+			<div className={styles.picture}></div>
 
-			<div className={styles.logoContainer}>
-				<span>ICONE</span>
+			<div className={styles[`logo-container`]}>
+				<span></span>
 				<h1 className={styles.title}>See what's happening</h1>
 				<p className={styles.lead}>Join Hackatweet today.</p>
 				<SignUp />
-				<span>Already have an account?</span>
+				<p className={styles.question}>Already have an account?</p>
 				<SignIn />
 			</div>
 		</div>

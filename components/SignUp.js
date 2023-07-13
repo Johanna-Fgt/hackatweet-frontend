@@ -1,4 +1,4 @@
-import styles from '../styles/Login.module.css';
+import styles from '../styles/Sign.module.css';
 import { Modal } from 'antd';
 import { useState } from 'react';
 import { login } from '../reducers/user';
@@ -73,7 +73,10 @@ const SignUp = () => {
 
 	return (
 		<div className={styles.signup}>
-			<button type="button" onClick={() => setIsModalVisible(!isModalVisible)}>
+			<button
+				className={styles.btn}
+				type="button"
+				onClick={() => setIsModalVisible(!isModalVisible)}>
 				Sign up
 			</button>
 			{isModalVisible && (

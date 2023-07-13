@@ -1,0 +1,23 @@
+.btn {
+    width: 180px;
+    padding: 10px;
+    border-radius: 25px;
+    font-weight: 900;
+    border: none;
+    cursor: pointer;
+}
+.btn:hover {
+    opacity: .8;
+}
+.signup .btn {
+    color: white;
+    background-color: #0091f5;
+}
+.signin .btn {
+    color: #0091f5;
+    background-color: transparent;
+    box-shadow: 0 0 0 1px #394250;
+}
+.signin .btn:hover {
+    background-color: #3942507c;
+}
