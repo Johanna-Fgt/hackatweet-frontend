@@ -1,0 +1,71 @@
+.container{
+    height: 100vh;
+    padding: 20px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 20%;
+}
+.picture {
+    cursor: pointer;
+}
+.picture:before {
+    content: '';
+    width: 48px;
+    height: 48px;
+    display: block;
+    background-image: url(../public/twitter.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    transform: rotate(180deg);
+}
+.connect {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.user {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.user div:last-child {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.firstname {
+    text-transform: capitalize;
+}
+.username {
+    color: #394250;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.person {
+    width: 52px;
+    height: 52px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #2c89d1;
+    border-radius: 50%;
+}
+.person:before {
+    content: '';
+    width: 26px;
+    height: 38px;
+    display: block;
+    border-radius: 50%;
+    background-color: white;
+}
+.btn {
+    width: 80px;
+    padding: 8px;
+    border-radius: 25px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    box-shadow: 0 0 0 1px #394250;
+}

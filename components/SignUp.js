@@ -28,8 +28,8 @@ const SignUp = () => {
 				if (data.result) {
 					dispatch(
 						login({
-							firstname: signUpFirstname,
-							username: signUpUsername,
+							firstname: data.firstname,
+							username: data.username,
 							token: data.token,
 						})
 					);

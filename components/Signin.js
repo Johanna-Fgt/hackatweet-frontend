@@ -28,7 +28,7 @@ const SignIn = () => {
 					dispatch(
 						login({
 							firstname: data.firstname,
-							username: signInUsername,
+							username: data.username,
 							token: data.token,
 						})
 					);

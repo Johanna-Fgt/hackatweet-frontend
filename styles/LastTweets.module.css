@@ -1,0 +1,11 @@
+.container{
+    width: 50%;
+    height: 100vh;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-left: 1px solid #394250;
+    border-right: 1px solid #394250;
+}
+
