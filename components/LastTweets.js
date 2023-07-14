@@ -5,13 +5,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { faHeart, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import { setLikedTweets } from '../reducers/user';
+
 const LastTweets = (props) => {
 	const dispatch = useDispatch();
-	const { username, token } = useSelector((state) => state.user.value);
+	const { username, token, likedTweets } = useSelector(
+		(state) => state.user.value
+	);
 	const tweets = useSelector((state) => state.tweets.tweets);
 	const [newTweetDesc, setNewTextDesc] = useState('');
 
-	const handleTweet = () => {
+	const createTweet = () => {
 		const pattern = /#\S+/g;
 		const hashtag = newTweetDesc.match(pattern);
 		const URL = 'http://localhost:3000/tweets/new';
@@ -35,6 +39,41 @@ const LastTweets = (props) => {
 			});
 	};
 
+	const updateTweet = (id) => {
+		const URL = `http://localhost:3000/tweets/update/${id}`;
+		const config = {
+			method: 'PUT',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({ token }),
+		};
+
+		fetch(URL, config)
+			.then((response) => response.json())
+			.then((data) => {
+				if (data.result) {
+					dispatch(setLikedTweets(data.likedTweets));
+					props.getTweets();
+				}
+			});
+	};
+
+	const deleteTweet = (id) => {
+		const URL = `http://localhost:3000/tweets/delete/${id}`;
+		const config = {
+			method: 'DELETE',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({ token }),
+		};
+
+		fetch(URL, config)
+			.then((response) => response.json())
+			.then((data) => {
+				if (data.result) {
+					props.getTweets();
+				}
+			});
+	};
+
 	return (
 		<div className={styles.container}>
 			<div className={styles['newtweet-container']}>
@@ -47,7 +86,7 @@ const LastTweets = (props) => {
 				/>
 				<div className={styles['newtweet-details']}>
 					<span>{newTweetDesc.length}/280</span>
-					<button type="submit" className={styles.btn} onClick={handleTweet}>
+					<button type="submit" className={styles.btn} onClick={createTweet}>
 						Tweet
 					</button>
 				</div>
@@ -78,10 +117,19 @@ const LastTweets = (props) => {
 							)}
 						</p>
 						<div className={styles['actions-container']}>
-							<FontAwesomeIcon icon={faHeart} />
+							<FontAwesomeIcon
+								icon={faHeart}
+								style={likedTweets?.includes(tweet.id) ? { color: 'red' } : {}}
+								onClick={() => {
+									updateTweet(tweet.id);
+								}}
+							/>
 							<span>{tweet.isLikedCount}</span>
 							{tweet.username === username && (
-								<FontAwesomeIcon icon={faTrashCan} />
+								<FontAwesomeIcon
+									icon={faTrashCan}
+									onClick={() => deleteTweet(tweet.id)}
+								/>
 							)}
 						</div>
 					</div>

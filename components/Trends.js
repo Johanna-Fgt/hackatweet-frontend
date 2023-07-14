@@ -7,18 +7,21 @@ const Trends = () => {
 	return (
 		<div className={styles.container}>
 			<h2>Trends</h2>
-			{hashtags?.map((h, i) => (
-				<ul key={i}>
-					<li>
+			<ul>
+				{hashtags?.map((h, i) => (
+					<li key={i}>
 						{/* <Link href={`/${h}`}> */}
-						<span>{h}</span>
-						<span>
-							{tweets.filter((t) => t.hashtag?.includes(h)).length} Tweets
+						<span className={styles.hashtag}>{h}</span>
+						<span className={styles.number}>
+							{tweets.filter((t) => t.hashtag?.includes(h)).length}{' '}
+							{tweets.filter((t) => t.hashtag?.includes(h)).length > 1
+								? 'Tweets'
+								: 'Tweet'}
 						</span>
 						{/* </Link> */}
 					</li>
-				</ul>
-			))}
+				))}
+			</ul>
 		</div>
 	);
 };

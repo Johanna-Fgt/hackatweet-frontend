@@ -30,6 +30,7 @@ const SignIn = () => {
 							firstname: data.firstname,
 							username: data.username,
 							token: data.token,
+							likedTweets: data.likedTweets,
 						})
 					);
 					setSignInUsername('');

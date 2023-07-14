@@ -1,9 +1,44 @@
 .container{
+    width: 30%;
     height: 100vh;
-    /* padding: 20px 40px; */
     padding: 30px 20px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    width: 30%;
+    gap: 20px;
+    overflow-y: scroll;
+}
+
+.container ul {
+    list-style: none;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border-radius: 15px;
+    
+    background-color: #19222e;
+}
+.container ul li {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    padding: 20px;
+    
+    cursor: pointer;
+}
+.container ul li:first-child {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+.container ul li:last-child {
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+.container ul li:hover {
+    background-color: #222d3d;
+    
+}
+.hashtag {
+    font-weight: 900;
+}
+.number {
+    color: #3e4758;
 }

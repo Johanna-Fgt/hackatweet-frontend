@@ -10,7 +10,7 @@ export const tweetsSlice = createSlice({
 	initialState,
 	reducers: {
 		getAllTweets: (state, action) => {
-			const allHashtags = action.payload.filter((t) => t.hashtag); // [ ['','',''],['',''],[''] ]
+			const allHashtags = action.payload.map((t) => !!t.hashtag && t.hashtag); // [ ['','',''],['',''],[''] ]
 			allHashtags.forEach((element) => {
 				for (let i = 0; i < element.length; i++) {
 					!state.hashtags.includes(element[i]) &&
