@@ -116,3 +116,9 @@
 .hashtag {
     color: #2c89d1;
 }
+.icon {
+    cursor: pointer;
+}
+.icon:hover {
+    opacity: .8;
+}

@@ -1,23 +1,19 @@
-import { useState } from 'react';
 import styles from '../styles/LastTweets.module.css';
+import { useState } from 'react';
 import { getTimeToDeparture } from '../utils/time';
 import { useDispatch, useSelector } from 'react-redux';
-import { faHeart, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-import { setLikedTweets } from '../reducers/user';
+import { faHeart, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 
 const LastTweets = (props) => {
-	const dispatch = useDispatch();
-	const { username, token, likedTweets } = useSelector(
-		(state) => state.user.value
-	);
+	const { username, token } = useSelector((state) => state.user.value);
 	const tweets = useSelector((state) => state.tweets.tweets);
 	const [newTweetDesc, setNewTextDesc] = useState('');
 
 	const createTweet = () => {
 		const pattern = /#\S+/g;
 		const hashtag = newTweetDesc.match(pattern);
+		// const URL = 'http://localhost:3000/tweets/new';
 		const URL = 'https://hackatweet-backend-mu.vercel.app/tweets/new';
 		const config = {
 			method: 'POST',
@@ -40,6 +36,7 @@ const LastTweets = (props) => {
 	};
 
 	const updateTweet = (id) => {
+		// const URL = `http://localhost:3000/tweets/update/${id}`;
 		const URL = `https://hackatweet-backend-mu.vercel.app/tweets/update/${id}`;
 		const config = {
 			method: 'PUT',
@@ -51,13 +48,13 @@ const LastTweets = (props) => {
 			.then((response) => response.json())
 			.then((data) => {
 				if (data.result) {
-					dispatch(setLikedTweets(data.likedTweets));
 					props.getTweets();
 				}
 			});
 	};
 
 	const deleteTweet = (id) => {
+		// const URL = `http://localhost:3000/tweets/delete/${id}`;
 		const URL = `https://hackatweet-backend-mu.vercel.app/tweets/delete/${id}`;
 		const config = {
 			method: 'DELETE',
@@ -119,15 +116,18 @@ const LastTweets = (props) => {
 						<div className={styles['actions-container']}>
 							<FontAwesomeIcon
 								icon={faHeart}
-								style={likedTweets?.includes(tweet.id) ? { color: 'red' } : {}}
-								onClick={() => {
-									updateTweet(tweet.id);
-								}}
+								className={styles.icon}
+								style={tweet.isLikedBy.includes(token) ? { color: 'red' } : {}}
+								onClick={() => updateTweet(tweet.id)}
 							/>
-							<span>{tweet.isLikedCount}</span>
+							<span
+								style={tweet.isLikedBy.includes(token) ? { color: 'red' } : {}}>
+								{tweet.isLikedBy.length}
+							</span>
 							{tweet.username === username && (
 								<FontAwesomeIcon
 									icon={faTrashCan}
+									className={styles.icon}
 									onClick={() => deleteTweet(tweet.id)}
 								/>
 							)}

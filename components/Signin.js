@@ -12,6 +12,7 @@ const SignIn = () => {
 
 	const handleConnection = () => {
 		const URL = 'https://hackatweet-backend-mu.vercel.app/users/signin';
+		// const URL = 'http://localhost:3000/users/signin';
 		const config = {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
@@ -30,7 +31,6 @@ const SignIn = () => {
 							firstname: data.firstname,
 							username: data.username,
 							token: data.token,
-							likedTweets: data.likedTweets,
 						})
 					);
 					setSignInUsername('');

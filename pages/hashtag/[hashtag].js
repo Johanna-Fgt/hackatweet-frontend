@@ -5,17 +5,7 @@ import { useSelector } from 'react-redux';
 function Index() {
 	const user = useSelector((state) => state.user.value);
 
-	return (
-		<>
-			{user.token ? (
-				<>
-					<Hashtag />
-				</>
-			) : (
-				<Login />
-			)}
-		</>
-	);
+	return <>{user.token ? <Hashtag /> : <Login />}</>;
 }
 
 export default Index;

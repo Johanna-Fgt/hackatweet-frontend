@@ -13,6 +13,7 @@ const SignUp = () => {
 
 	const handleRegister = () => {
 		const URL = 'https://hackatweet-backend-mu.vercel.app/users/signup';
+		// const URL = 'http://localhost:3000/users/signup';
 		const config = {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },

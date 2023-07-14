@@ -11,6 +11,7 @@ function Home() {
 
 	const getTweets = () => {
 		const URL = 'https://hackatweet-backend-mu.vercel.app/tweets';
+		// const URL = 'http://localhost:3000/tweets';
 
 		fetch(URL)
 			.then((response) => response.json())
@@ -23,7 +24,7 @@ function Home() {
 						username: tweet.author.username,
 						firstname: tweet.author.firstname,
 						hashtag: tweet.hashtag,
-						isLikedCount: tweet.isLikedCount,
+						isLikedBy: tweet.isLikedBy,
 					}));
 					dispatch(getAllTweets(tweets));
 				}

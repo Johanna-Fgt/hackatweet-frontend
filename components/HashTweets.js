@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react';
 import styles from '../styles/LastTweets.module.css';
-import { getTimeToDeparture } from '../utils/time';
-import { useDispatch, useSelector } from 'react-redux';
-import { faHeart, faTrashCan } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { setLikedTweets } from '../reducers/user';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { getAllTweets } from '../reducers/tweets';
+import { setLikedTweets } from '../reducers/user';
+import { getTimeToDeparture } from '../utils/time';
+import { useDispatch, useSelector } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 
 const HashTweets = (props) => {
 	const dispatch = useDispatch();
@@ -20,7 +20,7 @@ const HashTweets = (props) => {
 
 	const getTweets = () => {
 		const URL = 'https://hackatweet-backend-mu.vercel.app/tweets';
-
+		// const URL = 'http://localhost:3000/tweets';
 		fetch(URL)
 			.then((response) => response.json())
 			.then((data) => {
@@ -32,7 +32,7 @@ const HashTweets = (props) => {
 						username: tweet.author.username,
 						firstname: tweet.author.firstname,
 						hashtag: tweet.hashtag,
-						isLikedCount: tweet.isLikedCount,
+						isLikedBy: tweet.isLikedBy,
 					}));
 					dispatch(getAllTweets(tweets));
 				}
@@ -40,7 +40,8 @@ const HashTweets = (props) => {
 	};
 
 	const updateTweet = (id) => {
-		const URL = `http://localhost:3000/tweets/update/${id}`;
+		const URL = `https://hackatweet-backend-mu.vercel.app/tweets/update/${id}`;
+		// const URL = `http://localhost:3000/tweets/update/${id}`;
 		const config = {
 			method: 'PUT',
 			headers: { 'Content-Type': 'application/json' },
@@ -51,14 +52,14 @@ const HashTweets = (props) => {
 			.then((response) => response.json())
 			.then((data) => {
 				if (data.result) {
-					dispatch(setLikedTweets(data.likedTweets));
 					getTweets();
 				}
 			});
 	};
 
 	const deleteTweet = (id) => {
-		const URL = `http://localhost:3000/tweets/delete/${id}`;
+		const URL = `https://hackatweet-backend-mu.vercel.app/tweets/delete/${id}`;
+		// const URL = `http://localhost:3000/tweets/delete/${id}`;
 		const config = {
 			method: 'DELETE',
 			headers: { 'Content-Type': 'application/json' },
@@ -74,8 +75,6 @@ const HashTweets = (props) => {
 			});
 	};
 
-	const searchTweet = () => {};
-
 	useEffect(() => {
 		setSearchValue(`${hashtagUrl}`);
 	}, [hashtagUrl]);
@@ -86,10 +85,7 @@ const HashTweets = (props) => {
 				<h2>Hashtag</h2>
 				<span>
 					<input
-						onChange={(e) => {
-							setSearchValue(e.target.value);
-							searchTweet();
-						}}
+						onChange={(e) => setSearchValue(e.target.value)}
 						value={searchValue}
 					/>
 				</span>
@@ -124,17 +120,22 @@ const HashTweets = (props) => {
 							<div className={styles['actions-container']}>
 								<FontAwesomeIcon
 									icon={faHeart}
+									className={styles.icon}
 									style={
-										!likedTweets?.includes(tweet.id) ? { color: 'red' } : {}
+										tweet.isLikedBy.includes(token) ? { color: 'red' } : {}
 									}
-									onClick={() => {
-										updateTweet(tweet.id);
-									}}
+									onClick={() => updateTweet(tweet.id)}
 								/>
-								<span>{tweet.isLikedCount}</span>
+								<span
+									style={
+										tweet.isLikedBy.includes(token) ? { color: 'red' } : {}
+									}>
+									{tweet.isLikedBy.length}
+								</span>
 								{tweet.username === username && (
 									<FontAwesomeIcon
 										icon={faTrashCan}
+										className={styles.icon}
 										onClick={() => deleteTweet(tweet.id)}
 									/>
 								)}
