@@ -117,12 +117,14 @@ const LastTweets = (props) => {
 							<FontAwesomeIcon
 								icon={faHeart}
 								className={styles.icon}
-								style={tweet.isLikedBy.includes(token) ? { color: 'red' } : {}}
+								style={tweet.isLikedBy?.includes(token) ? { color: 'red' } : {}}
 								onClick={() => updateTweet(tweet.id)}
 							/>
 							<span
-								style={tweet.isLikedBy.includes(token) ? { color: 'red' } : {}}>
-								{tweet.isLikedBy.length}
+								style={
+									tweet.isLikedBy?.includes(token) ? { color: 'red' } : {}
+								}>
+								{tweet.isLikedBy?.length}
 							</span>
 							{tweet.username === username && (
 								<FontAwesomeIcon

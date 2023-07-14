@@ -122,15 +122,15 @@ const HashTweets = (props) => {
 									icon={faHeart}
 									className={styles.icon}
 									style={
-										tweet.isLikedBy.includes(token) ? { color: 'red' } : {}
+										tweet.isLikedBy?.includes(token) ? { color: 'red' } : {}
 									}
 									onClick={() => updateTweet(tweet.id)}
 								/>
 								<span
 									style={
-										tweet.isLikedBy.includes(token) ? { color: 'red' } : {}
+										tweet.isLikedBy?.includes(token) ? { color: 'red' } : {}
 									}>
-									{tweet.isLikedBy.length}
+									{tweet.isLikedBy?.length}
 								</span>
 								{tweet.username === username && (
 									<FontAwesomeIcon
