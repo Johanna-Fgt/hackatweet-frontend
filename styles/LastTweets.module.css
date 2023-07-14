@@ -28,13 +28,13 @@
     padding: 10px 30px;
     border-radius: 25px;
 }
-.newtweet-container span {
+.newtweet-container > span {
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.newtweet-container span:before {
+.newtweet-container > span:before {
     content: '#';
     font-size: 1.5rem; 
     margin-right: -30px;
