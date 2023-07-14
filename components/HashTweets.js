@@ -6,6 +6,7 @@ import { faHeart, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { setLikedTweets } from '../reducers/user';
 import { useRouter } from 'next/router';
+import { getAllTweets } from '../reducers/tweets';
 
 const HashTweets = (props) => {
 	const dispatch = useDispatch();
@@ -16,6 +17,27 @@ const HashTweets = (props) => {
 	);
 	const tweets = useSelector((state) => state.tweets.tweets);
 	const [searchValue, setSearchValue] = useState('');
+
+	const getTweets = () => {
+		const URL = 'https://hackatweet-backend-mu.vercel.app/tweets';
+
+		fetch(URL)
+			.then((response) => response.json())
+			.then((data) => {
+				if (data.result) {
+					const tweets = data.tweets.map((tweet) => ({
+						id: tweet._id,
+						description: tweet.description,
+						date: tweet.date,
+						username: tweet.author.username,
+						firstname: tweet.author.firstname,
+						hashtag: tweet.hashtag,
+						isLikedCount: tweet.isLikedCount,
+					}));
+					dispatch(getAllTweets(tweets));
+				}
+			});
+	};
 
 	const updateTweet = (id) => {
 		const URL = `http://localhost:3000/tweets/update/${id}`;
@@ -30,7 +52,7 @@ const HashTweets = (props) => {
 			.then((data) => {
 				if (data.result) {
 					dispatch(setLikedTweets(data.likedTweets));
-					props.getTweets();
+					getTweets();
 				}
 			});
 	};
@@ -47,7 +69,7 @@ const HashTweets = (props) => {
 			.then((response) => response.json())
 			.then((data) => {
 				if (data.result) {
-					props.getTweets();
+					getTweets();
 				}
 			});
 	};
@@ -62,13 +84,15 @@ const HashTweets = (props) => {
 		<div className={styles.container}>
 			<div className={styles['newtweet-container']}>
 				<h2>Hashtag</h2>
-				<input
-					onChange={(e) => {
-						setSearchValue(e.target.value);
-						searchTweet();
-					}}
-					value={searchValue}
-				/>
+				<span>
+					<input
+						onChange={(e) => {
+							setSearchValue(e.target.value);
+							searchTweet();
+						}}
+						value={searchValue}
+					/>
+				</span>
 			</div>
 
 			<div className={styles['alltweets-container']}>
@@ -101,7 +125,7 @@ const HashTweets = (props) => {
 								<FontAwesomeIcon
 									icon={faHeart}
 									style={
-										likedTweets?.includes(tweet.id) ? { color: 'red' } : {}
+										!likedTweets?.includes(tweet.id) ? { color: 'red' } : {}
 									}
 									onClick={() => {
 										updateTweet(tweet.id);

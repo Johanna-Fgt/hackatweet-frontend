@@ -12,7 +12,7 @@ const SignUp = () => {
 	const [isModalVisible, setIsModalVisible] = useState(false);
 
 	const handleRegister = () => {
-		const URL = 'http://localhost:3000/users/signup';
+		const URL = 'https://hackatweet-backend-mu.vercel.app/users/signup';
 		const config = {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },

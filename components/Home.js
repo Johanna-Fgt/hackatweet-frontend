@@ -1,8 +1,8 @@
-import { useEffect } from 'react';
 import styles from '../styles/Home.module.css';
-import LastTweets from './LastTweets';
-import Trends from './Trends';
 import Tweet from './Tweet';
+import Trends from './Trends';
+import LastTweets from './LastTweets';
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { getAllTweets } from '../reducers/tweets';
 
@@ -10,7 +10,7 @@ function Home() {
 	const dispatch = useDispatch();
 
 	const getTweets = () => {
-		const URL = 'http://localhost:3000/tweets';
+		const URL = 'https://hackatweet-backend-mu.vercel.app/tweets';
 
 		fetch(URL)
 			.then((response) => response.json())

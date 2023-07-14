@@ -18,7 +18,7 @@ const LastTweets = (props) => {
 	const createTweet = () => {
 		const pattern = /#\S+/g;
 		const hashtag = newTweetDesc.match(pattern);
-		const URL = 'http://localhost:3000/tweets/new';
+		const URL = 'https://hackatweet-backend-mu.vercel.app/tweets/new';
 		const config = {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
@@ -40,7 +40,7 @@ const LastTweets = (props) => {
 	};
 
 	const updateTweet = (id) => {
-		const URL = `http://localhost:3000/tweets/update/${id}`;
+		const URL = `https://hackatweet-backend-mu.vercel.app/tweets/update/${id}`;
 		const config = {
 			method: 'PUT',
 			headers: { 'Content-Type': 'application/json' },
@@ -58,7 +58,7 @@ const LastTweets = (props) => {
 	};
 
 	const deleteTweet = (id) => {
-		const URL = `http://localhost:3000/tweets/delete/${id}`;
+		const URL = `https://hackatweet-backend-mu.vercel.app/tweets/delete/${id}`;
 		const config = {
 			method: 'DELETE',
 			headers: { 'Content-Type': 'application/json' },

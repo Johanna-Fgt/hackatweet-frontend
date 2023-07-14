@@ -11,7 +11,7 @@ const SignIn = () => {
 	const [isModalVisible, setIsModalVisible] = useState(false);
 
 	const handleConnection = () => {
-		const URL = 'http://localhost:3000/users/signin';
+		const URL = 'https://hackatweet-backend-mu.vercel.app/users/signin';
 		const config = {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
