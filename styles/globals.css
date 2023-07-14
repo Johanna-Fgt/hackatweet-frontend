@@ -10,6 +10,23 @@
   margin: 0;
   box-sizing: border-box;
 }
+
+	/* Scrollbar Chrome */
+	*::-webkit-scrollbar {
+		width: 2px;
+	}
+	*::-webkit-scrollbar-track {
+		background: transparent;
+		border-radius: 5px;
+	}
+	*::-webkit-scrollbar-thumb {
+		background: #001624;
+		border-radius: 5px;
+	}
+  *::-webkit-scrollbar-thumb:hover {
+    background: #0091f5;
+  }
+
 body {
  
   font-family: 'Mont-Heavy';

@@ -1,11 +1,100 @@
 .container{
     width: 50%;
     height: 100vh;
-    padding: 30px 20px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     border-left: 1px solid #394250;
     border-right: 1px solid #394250;
 }
-
+.newtweet-container {
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.newtweet-container textarea {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: #848994;
+    caret-color: #848994;
+    font-size: 24px;
+    border-bottom: 1px solid #394250;
+}
+.newtweet-details{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 20px;
+}
+.btn {
+    width: 100px;
+    padding: 10px;
+    border-radius: 25px;
+    font-weight: 900;
+    border: none;
+    cursor: pointer;
+    color: white;
+    background-color: #0091f5;
+}
+.btn:hover {
+    opacity: .8;
+}
+.newtweet-container textarea, .newtweet-details {
+    width: 80%;
+    align-self: center;
+}
+.alltweets-container {
+    overflow-y: scroll;
+}
+.tweet-container {
+    padding: 30px 20px;
+    border-top: 1px solid #394250;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.user-container, .username, .date , .actions-container {
+   display: flex;
+   align-items: center;
+   gap: 8px;
+}
+.firstname {
+    text-transform: capitalize;
+    padding-left: 10px;
+}
+.username {
+    color: #394250;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.date:before {
+    content: '';
+    width: 4px;
+    height: 4px;
+    display: block;
+    border-radius: 50%;
+    background-color: #394250;
+}
+.person {
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #2c89d1;
+    border-radius: 50%;
+}
+.person:before {
+    content: '';
+    width: 26px;
+    height: 38px;
+    display: block;
+    border-radius: 50%;
+    background-color: white;
+}
+.actions-container, .newtweet-details,.newtweet-container textarea, .tweet-container > p {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.hashtag {
+    color: #2c89d1;
+}

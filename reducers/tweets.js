@@ -2,12 +2,23 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
 	tweets: [],
+	hashtags: [],
 };
 
 export const tweetsSlice = createSlice({
 	name: 'tweets',
 	initialState,
 	reducers: {
+		getAllTweets: (state, action) => {
+			const allHashtags = action.payload.filter((t) => t.hashtag); // [ ['','',''],['',''],[''] ]
+			allHashtags.forEach((element) => {
+				for (let i = 0; i < element.length; i++) {
+					!state.hashtags.includes(element[i]) &&
+						state.hashtags.push(element[i]);
+				}
+			});
+			state.tweets = [...action.payload].reverse();
+		},
 		addTweets: (state, action) => {
 			state.tweets.push(action.payload);
 		},
@@ -19,5 +30,5 @@ export const tweetsSlice = createSlice({
 	},
 });
 
-export const { addTweets, removeTweets } = tweetsSlice.actions;
+export const { getAllTweets, addTweets, removeTweets } = tweetsSlice.actions;
 export default tweetsSlice.reducer;
