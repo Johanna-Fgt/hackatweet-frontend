@@ -25,10 +25,7 @@ function Index() {
 					property="og:description"
 					content="Second hackathon des éléves de la Capsule !"
 				/>
-				<meta
-					property="og:image"
-					content="https://metatags.io/images/meta-tags.png"
-				/>
+				<meta property="og:image" content="/img_tweeter.png" />
 
 				<meta property="twitter:card" content="summary_large_image" />
 				<meta property="twitter:url" content="https://metatags.io" />
@@ -37,10 +34,7 @@ function Index() {
 					property="twitter:description"
 					content="Second hackathon des éléves de la Capsule !"
 				/>
-				<meta
-					property="twitter:image"
-					content="https://metatags.io/images/meta-tags.png"
-				/>
+				<meta property="twitter:image" content="/img_tweeter.png" />
 			</Head>
 			{!user.token ? <Login /> : <Home />}
 		</>
